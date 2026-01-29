@@ -931,13 +931,14 @@ body.hide-footer .footer {
 
 #loading-screen.hidden {
     opacity: 0;
+    opacity: 0;
     visibility: hidden;
     pointer-events: none;
 }
 
 #lottie-welcome {
-    width: 400px !important;
-    height: 400px !important;
-    max-width: 90vw;
-    max-height: 90vh;
+    width: 500px !important;
+    height: 500px !important;
+    max-width: 95vw;
+    max-height: 95vh;
 }

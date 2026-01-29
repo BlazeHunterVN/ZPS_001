@@ -1088,34 +1088,49 @@ document.addEventListener("DOMContentLoaded", function () {
     const loadingScreen = document.getElementById('loading-screen');
     const lottieContainer = document.getElementById('lottie-welcome');
 
-    if (loadingScreen && lottieContainer && window.lottie) {
-        // Load Animation
-        const anim = lottie.loadAnimation({
-            container: lottieContainer,
-            renderer: 'svg',
-            loop: false,
-            autoplay: true,
-            path: '/assets/json/welcome.json'
-        });
+    if (!loadingScreen || !lottieContainer) return;
 
-        // When animation finishes, hide loading screen
-        anim.addEventListener('complete', () => {
-            fadeOutLoadingScreen(loadingScreen);
-        });
-
-        // Safety: Only force hide if it takes WAY too long (e.g. 10s Internet lag), 
-        // essentially trusting the animation 'complete' event mostly.
-        setTimeout(() => {
-            if (loadingScreen.style.opacity !== '0') {
+    // Retry checking for lottie lib for up to 3 seconds
+    let attempts = 0;
+    const checkLottie = setInterval(() => {
+        if (window.lottie) {
+            clearInterval(checkLottie);
+            startLottieAnimation(loadingScreen, lottieContainer);
+        } else {
+            attempts++;
+            if (attempts > 30) { // 3 seconds (100ms * 30)
+                clearInterval(checkLottie);
+                console.warn('Lottie lib not loaded. Fading out.');
                 fadeOutLoadingScreen(loadingScreen);
             }
-        }, 8000);
-
-    } else {
-        // Fallback if Lottie not loaded
-        if (loadingScreen) setTimeout(() => fadeOutLoadingScreen(loadingScreen), 500);
-    }
+        }
+    }, 100);
 });
+
+function startLottieAnimation(loadingScreen, lottieContainer) {
+    const anim = lottie.loadAnimation({
+        container: lottieContainer,
+        renderer: 'svg',
+        loop: false,
+        autoplay: true,
+        path: '/assets/json/welcome.json',
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice' // Scale to fill/cover
+        }
+    });
+
+    // STRICT: Only fade out when animation actually finishes.
+    anim.addEventListener('complete', () => {
+        console.log('Animation Complete');
+        fadeOutLoadingScreen(loadingScreen);
+    });
+
+    // Error handling
+    anim.addEventListener('data_failed', () => {
+        console.error('Lottie Data Failed');
+        fadeOutLoadingScreen(loadingScreen);
+    });
+}
 
 function fadeOutLoadingScreen(element) {
     if (!element) return;
