@@ -1051,12 +1051,80 @@ if (gridOverlay) {
     });
 }
 
-window.addEventListener('popstate', () => {
-    const currentPath = window.location.pathname;
-    const parts = currentPath.split('/');
-    const key = parts[parts.length - 1];
+// ==========================================
+// 1. AUTO RELOAD ON INACTIVITY (30s)
+// ==========================================
+let inactivityTimeout;
 
-    handleRouting(currentPath, key);
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        // User left the tab -> Start 30s timer
+        console.log('Tab hidden. Auto-reload timer started (30s).');
+        inactivityTimeout = setTimeout(() => {
+            console.log('30s verified. Reloading...');
+            window.location.reload();
+        }, 30000); // 30 seconds
+    } else {
+        // User returned -> Clear timer
+        if (inactivityTimeout) {
+            clearTimeout(inactivityTimeout);
+            console.log('Tab active. Timer cleared.');
+        }
+    }
+});
+
+// ==========================================
+// 2. LOADING SCREEN (LOTTIE)
+// ==========================================
+document.addEventListener("DOMContentLoaded", function () {
+    const loadingScreen = document.getElementById('loading-screen');
+    const lottieContainer = document.getElementById('lottie-welcome');
+
+    if (loadingScreen && lottieContainer && window.lottie) {
+        // Load Animation
+        const anim = lottie.loadAnimation({
+            container: lottieContainer,
+            renderer: 'svg',
+            loop: false,
+            autoplay: true,
+            path: '/assets/json/welcome.json'
+        });
+
+        // When animation finishes, hide loading screen
+        anim.addEventListener('complete', () => {
+            fadeOutLoadingScreen(loadingScreen);
+        });
+
+        // Safety: If animation fails or takes too long (5s), force hide
+        setTimeout(() => fadeOutLoadingScreen(loadingScreen), 5000);
+
+    } else {
+        // Fallback if Lottie not loaded
+        if (loadingScreen) setTimeout(() => fadeOutLoadingScreen(loadingScreen), 1000);
+    }
+});
+
+function fadeOutLoadingScreen(element) {
+    if (!element) return;
+    element.style.opacity = '0';
+    setTimeout(() => {
+        element.style.display = 'none';
+        element.remove(); // Remove from DOM to free memory
+    }, 500);
+}
+
+// Initial Call
+handleRouting(window.location.pathname);
+fetchDataFromAPI();
+fetchHomeSettings();
+window.addEventListener('popstate', (e) => handleRouting(window.location.pathname));
+
+// Listen for link clicks
+document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (link) {
+        handleNavLinkClick(e);
+    }
 });
 
 if (menuToggle) {

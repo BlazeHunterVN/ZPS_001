@@ -1,5 +1,5 @@
 {
-  "name": "Free Fire Elite Portal",
+  "name": "Zone Posters",
   "short_name": "FF Posters",
   "description": "Discover the latest Free Fire posters, event banners, and news from all regions",
   "start_url": "/",
@@ -21,7 +21,11 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["games", "entertainment", "news"],
+  "categories": [
+    "games",
+    "entertainment",
+    "news"
+  ],
   "lang": "en",
   "dir": "ltr",
   "scope": "/",
