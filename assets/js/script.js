@@ -1103,12 +1103,17 @@ document.addEventListener("DOMContentLoaded", function () {
             fadeOutLoadingScreen(loadingScreen);
         });
 
-        // Safety: If animation fails or takes too long (5s), force hide
-        setTimeout(() => fadeOutLoadingScreen(loadingScreen), 5000);
+        // Safety: Only force hide if it takes WAY too long (e.g. 10s Internet lag), 
+        // essentially trusting the animation 'complete' event mostly.
+        setTimeout(() => {
+            if (loadingScreen.style.opacity !== '0') {
+                fadeOutLoadingScreen(loadingScreen);
+            }
+        }, 8000);
 
     } else {
         // Fallback if Lottie not loaded
-        if (loadingScreen) setTimeout(() => fadeOutLoadingScreen(loadingScreen), 1000);
+        if (loadingScreen) setTimeout(() => fadeOutLoadingScreen(loadingScreen), 500);
     }
 });
 
@@ -1117,7 +1122,8 @@ function fadeOutLoadingScreen(element) {
     element.style.opacity = '0';
     setTimeout(() => {
         element.style.display = 'none';
-        element.remove(); // Remove from DOM to free memory
+        element.classList.add('hidden'); // Ensure class logic is consistent
+        // element.remove(); // REMOVED: Keep in DOM for re-use if needed
     }, 500);
 }
 
