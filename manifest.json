@@ -1,0 +1,29 @@
+{
+  "name": "Free Fire Elite Portal",
+  "short_name": "FF Posters",
+  "description": "Discover the latest Free Fire posters, event banners, and news from all regions",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/common/image/LOGO_FF_SHORT.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/common/image/LOGO_FF_SHORT.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["games", "entertainment", "news"],
+  "lang": "en",
+  "dir": "ltr",
+  "scope": "/",
+  "screenshots": []
+}

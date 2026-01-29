@@ -1,0 +1,10 @@
+# Free Fire Posters - Robots.txt
+# https://zoneposters.vercel.app/robots.txt
+
+# Allow all search engines
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+
+Sitemap: https://zoneposters.vercel.app/sitemap.xml

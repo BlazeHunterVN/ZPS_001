@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operating Policy - Zone Posters</title>
+    <meta name="description"
+        content="Read the official Operating Policy of Zone Posters. Learn about our mission, data privacy commitment, and content management guidelines.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://zoneposters.vercel.app/operating-policy">
+    <link rel="icon" type="image/png" href="/assets/image/LOGO_FF_SHORT.png" />
+    <link rel="stylesheet" href="/assets/css/style.css?v=3.5.1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-gold: #ffba00;
+            --accent-gold-soft: rgba(255, 186, 0, 0.1);
+            --bg-glass: rgba(255, 255, 255, 0.95);
+            --primary-dark: #1a1a1a;
+            --text-main: #2d3436;
+            --text-muted: #636e72;
+            --border-soft: #e9ecef;
+            --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            background-color: #f8f9fa;
+            background-image: radial-gradient(at 0% 0%, rgba(255, 186, 0, 0.03) 0, transparent 50%),
+                radial-gradient(at 50% 0%, rgba(0, 0, 0, 0.02) 0, transparent 50%);
+            margin: 0;
+            padding-top: 80px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--text-main);
+        }
+
+        /* Re-applying main font for headers */
+        h1,
+        h2,
+        h3,
+        .switch-btn,
+        .nav-link {
+            font-family: 'Exo-SemiBold', sans-serif;
+        }
+
+        .policy-container {
+            max-width: 1000px;
+            margin: 20px auto 60px;
+            padding: 0 24px;
+            flex: 1;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Modern Language Switcher */
+        .controls-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .lang-pills {
+            background: #fff;
+            padding: 6px;
+            border-radius: 50px;
+            display: flex;
+            gap: 4px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-soft);
+        }
+
+        .switch-btn {
+            border: none;
+            background: transparent;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .switch-btn.active {
+            background: var(--accent-gold);
+            color: #000;
+            box-shadow: 0 4px 12px rgba(255, 186, 0, 0.3);
+        }
+
+        /* Main Card Reveal */
+        .glass-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(10px);
+            border-radius: 32px;
+            border: 1px solid #fff;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            animation: cardReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes cardReveal {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, #000 0%, #222 100%);
+            padding: 60px 40px;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gold);
+        }
+
+        .page-hero h1 {
+            font-size: 2.8rem;
+            margin: 0;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+        }
+
+        .meta-info {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .content-body {
+            padding: 60px;
+        }
+
+        /* Module-based Sections */
+        .policy-module {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .policy-module:last-child {
+            margin-bottom: 0;
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .module-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-gold-soft);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-gold);
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            box-shadow: inset 0 0 0 1px rgba(255, 186, 0, 0.2);
+        }
+
+        .module-header h2 {
+            font-size: 1.6rem;
+            margin: 0;
+            color: var(--primary-dark);
+            letter-spacing: -0.2px;
+        }
+
+        .module-content {
+            padding-left: 70px;
+        }
+
+        .module-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .modern-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 16px;
+        }
+
+        .modern-list li {
+            background: #fff;
+            padding: 20px 24px;
+            border-radius: 16px;
+            border: 1px solid var(--border-soft);
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .modern-list li:hover {
+            transform: translateX(5px);
+            border-color: var(--accent-gold);
+        }
+
+        .modern-list li::before {
+            content: "\f058";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .modern-list li strong {
+            color: var(--primary-dark);
+            display: block;
+            margin-bottom: 4px;
+            font-family: 'Exo-SemiBold', sans-serif;
+            font-size: 1.05rem;
+        }
+
+        .intro-text {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        /* Footer Tweak */
+        .footer {
+            margin-top: auto;
+            background: #000;
+            border-top: 1px solid #222;
+        }
+
+        @media (max-width: 768px) {
+            .content-body {
+                padding: 40px 24px;
+            }
+
+            .module-header {
+                gap: 15px;
+            }
+
+            .module-content {
+                padding-left: 0;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .module-icon {
+                width: 42px;
+                height: 42px;
+                font-size: 1.1rem;
+            }
+
+            .module-header h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="non-home-bg">
+    <header class="header">
+        <div class="logo">
+            <a href="/">
+                <img src="/assets/image/LOGO_FF_SHORT.png" alt="Free Fire Logo" width="35" height="35">
+            </a>
+        </div>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="/" class="nav-link">HOME</a></li>
+                <li><a href="/nation" class="nav-link">NATION</a></li>
+                <li><a href="/news" class="nav-link">NEWS</a></li>
+                <li><a href="/contact" class="nav-link">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="policy-container">
+        <div class="controls-wrapper">
+            <div class="lang-pills">
+                <button class="switch-btn active" id="btn-en" onclick="setLanguage('en')">English</button>
+                <button class="switch-btn" id="btn-vi" onclick="setLanguage('vi')">Tiếng Việt</button>
+            </div>
+        </div>
+
+        <article class="glass-card">
+            <!-- Content English -->
+            <div id="content-en" class="lang-content active">
+                <div class="page-hero">
+                    <h1>Operating Policy</h1>
+                    <div class="meta-info">
+                        <span><i class="far fa-calendar-alt"></i> Updated Jan 28, 2026</span>
+                        <span><i class="fas fa-shield-alt"></i> Official Document</span>
+                    </div>
+                </div>
+
+                <div class="content-body">
+                    <p class="intro-text">Welcome to <strong>Zone Posters</strong>. This policy outlines our operational
+                        framework designed to provide a secure and transparent media hub for the community.</p>
+
+                    <div class="policy-module">
+                        <div class="module-header">
+                            <div class="module-icon"><i class="fas fa-flag"></i></div>
+                            <h2>1. Mission & Objective</h2>
+                        </div>
+                        <div class="module-content">
+                            <p>Zone Posters is a non-profit community project dedicated to the history and art of Free
+                                Fire.</p>
+                            <ul class="modern-list">
+                                <li>
+                                    <div><strong>Media Archiving</strong> Centralized database for regional banners,
+                                        posters, and key visual assets.</div>
+                                </li>
+                                <li>
+                                    <div><strong>Creator Resource</strong> Providing high-quality references for graphic
+                                        designers and content creators.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="policy-module">
+                        <div class="module-header">
+                            <div class="module-icon"><i class="fas fa-user-secret"></i></div>
+                            <h2>2. Data Privacy Commitment</h2>
+                        </div>
+                        <div class="module-content">
+                            <p>We operate on a "Zero-Footprint" policy, ensuring maximum protection for our users.</p>
+                            <ul class="modern-list">
+                                <li>
+                                    <div><strong>No Accounts Required</strong> We do not offer registration. Your
+                                        experience is completely anonymous.</div>
+                                </li>
+                                <li>
+                                    <div><strong>No Personal Requests</strong> We will never ask for your email, phone
+                                        number, or Garena credentials.</div>
+                                </li>
+                                <li>
+                                    <div><strong>Encrypted Backend</strong> Administrative access is protected by
+                                        military-grade encryption via Supabase.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="policy-module">
+                        <div class="module-header">
+                            <div class="module-icon"><i class="fas fa-database"></i></div>
+                            <h2>3. Content Management</h2>
+                        </div>
+                        <div class="module-content">
+                            <p>Our library is maintained by a specialized team of moderators who verify every asset.</p>
+                            <ul class="modern-list">
+                                <li>
+                                    <div><strong>Verified Sources</strong> Information is pulled directly from official
+                                        public publishers.</div>
+                                </li>
+                                <li>
+                                    <div><strong>Informational Only</strong> Schedules may change without notice; always
+                                        refer to the game for live updates.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="policy-module">
+                        <div class="module-header">
+                            <div class="module-icon"><i class="fas fa-handshake"></i></div>
+                            <h2>4. Legal Status</h2>
+                        </div>
+                        <div class="module-content">
+                            <p>Zone Posters operates as an independent fan-run media archive.</p>
+                            <ul class="modern-list">
+                                <li>
+                                    <div><strong>Non-Affiliation</strong> We are not a partner, employee, or
+                                        representative of Garena.</div>
+                                </li>
+                                <li>
+                                    <div><strong>Purely Community</strong> No fees, no ads, no commercial tracking.
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Vietnamese -->
+            <div id="content-vi" class="lang-content">
+                <div class="page-hero">
+                    <h1>Chính Sách Vận Hành</h1>
+                    <div class="meta-info">
+                        <span><i class="far fa-calendar-alt"></i> Cập nhật 28/01, 2026</span>
+                        <span><i class="fas fa-shield-alt"></i> Tài liệu chính thức</span>
+                    </div>
+                </div>
+
+                <div class="content-body">
+                    <p class="intro-text">Chào mừng bạn đến với <strong>Zone Posters</strong>. Chính sách này phác thảo
+                        khung vận hành của chúng tôi, nhằm cung cấp một trung tâm truyền thông an toàn và minh bạch.</p>
+
+                    <div class="policy-module">
+                        <div class="module-header">
+                            <div class="module-icon"><i class="fas fa-flag"></i></div>
+                            <h2>1. Sứ mệnh & Mục tiêu</h2>
+                        </div>
+                        <div class="module-content">
+                            <p>Zone Posters là một dự án cộng đồng phi lợi nhuận dành riêng cho lịch sử và nghệ thuật
+                                của Free Fire.</p>
+                            <ul class="modern-list">
+                                <li>
+                                    <div><strong>Lưu trữ Truyền thông</strong> Cơ sở dữ liệu tập trung cho các biểu ngữ,
+                                        poster và tài sản hình ảnh khu vực.</div>
+                                </li>
+                                <li>
+                                    <div><strong>Nguồn lực Sáng tạo</strong> Cung cấp tài liệu tham khảo chất lượng cao
+                                        cho các nhà thiết kế và sáng tạo nội dung.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="policy-module">
+                        <div class="module-header">
+                            <div class="module-icon"><i class="fas fa-user-secret"></i></div>
+                            <h2>2. Cam kết Bảo mật Dữ liệu</h2>
+                        </div>
+                        <div class="module-content">
+                            <p>Chúng tôi hoạt động trên chính sách "Không để lại dấu vết", đảm bảo bảo vệ tối đa cho
+                                người dùng.</p>
+                            <ul class="modern-list">
+                                <li>
+                                    <div><strong>Không yêu cầu tài khoản</strong> Chúng tôi không cung cấp tính năng
+                                        đăng ký. Trải nghiệm của bạn là ẩn danh hoàn toàn.</div>
+                                </li>
+                                <li>
+                                    <div><strong>Không yêu cầu thông tin</strong> Chúng tôi không bao giờ hỏi email, số
+                                        điện thoại hoặc mật khẩu Garena của bạn.</div>
+                                </li>
+                                <li>
+                                    <div><strong>Hệ thống Bảo mật</strong> Quyền truy cập quản trị được bảo vệ bởi mã
+                                        hóa cấp cao thông qua Supabase.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="policy-module">
+                        <div class="module-header">
+                            <div class="module-icon"><i class="fas fa-database"></i></div>
+                            <h2>3. Quản lý Nội dung</h2>
+                        </div>
+                        <div class="module-content">
+                            <p>Thư viện của chúng tôi được duy trì bởi đội ngũ kiểm duyệt chuyên nghiệp, xác minh mọi
+                                tài sản.</p>
+                            <ul class="modern-list">
+                                <li>
+                                    <div><strong>Nguồn Xác minh</strong> Thông tin được lấy trực tiếp từ các nhà phát
+                                        hành công khai chính thức.</div>
+                                </li>
+                                <li>
+                                    <div><strong>Chỉ nhằm mục đích Thông tin</strong> Lịch trình có thể thay đổi mà
+                                        không báo trước; hãy tham khảo trò chơi để có cập nhật thực tế.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="policy-module">
+                        <div class="module-header">
+                            <div class="module-icon"><i class="fas fa-handshake"></i></div>
+                            <h2>4. Trạng thái Pháp lý</h2>
+                        </div>
+                        <div class="module-content">
+                            <p>Zone Posters hoạt động như một kho lưu trữ truyền thông độc lập do người hâm mộ điều
+                                hành.</p>
+                            <ul class="modern-list">
+                                <li>
+                                    <div><strong>Không liên kết</strong> Chúng tôi không phải là đối tác, nhân viên hoặc
+                                        đại diện của Garena.</div>
+                                </li>
+                                <li>
+                                    <div><strong>Vì cộng đồng</strong> Không phí, không quảng cáo, không theo dõi thương
+                                        mại.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Zone Posters. All rights reserved.</p>
+            <p class="trademark-disclaimer" style="font-size: 0.8rem; color: #888; margin-top: 5px;">Free Fire is a
+                registered trademark of Garena. This site is a fan-made community gallery and is not affiliated with
+                Garena.</p>
+        </div>
+    </footer>
+
+    <script>
+        function setLanguage(lang) {
+            document.querySelectorAll('.switch-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+
+            document.querySelectorAll('.lang-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById('content-' + lang).classList.add('active');
+
+            localStorage.setItem('policyLang', lang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('policyLang') || 'en';
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+
+</html>

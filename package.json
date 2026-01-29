@@ -1,0 +1,10 @@
+{
+    "name": "website-ff-new",
+    "version": "3.5.0",
+    "type": "module",
+    "description": "Free Fire Posters Website with Secure Admin",
+    "main": "index.js",
+    "dependencies": {
+        "@supabase/supabase-js": "^2.39.3"
+    }
+}
