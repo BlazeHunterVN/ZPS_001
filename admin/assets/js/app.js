@@ -1172,25 +1172,3 @@ showDashboard = function () {
     fetchNews();
     fetchAdminList();
 };
-
-// ==========================================
-// AUTO RELOAD ON INACTIVITY (30s)
-// ==========================================
-let adminInactivityTimeout;
-
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        // User left the tab -> Start 30s timer
-        console.log('Admin Tab hidden. Auto-reload timer started (30s).');
-        adminInactivityTimeout = setTimeout(() => {
-            console.log('30s verified. Reloading Admin...');
-            window.location.reload();
-        }, 30000); // 30 seconds
-    } else {
-        // User returned -> Clear timer
-        if (adminInactivityTimeout) {
-            clearTimeout(adminInactivityTimeout);
-            console.log('Admin Tab active. Timer cleared.');
-        }
-    }
-});

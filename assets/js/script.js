@@ -448,14 +448,6 @@ function updateSectionHeadings(path, key) {
 }
 
 function handleRouting(path, key) {
-    // Auto-derive key if not provided
-    if (!key) {
-        const parts = path.split('/').filter(p => p);
-        if (parts.length > 0) {
-            key = parts[parts.length - 1];
-        }
-    }
-
     const allNavLinks = document.querySelectorAll('.nav-links a');
     allNavLinks.forEach(link => {
         if (!link.closest('.language-selector')) {
@@ -1059,117 +1051,12 @@ if (gridOverlay) {
     });
 }
 
-// ==========================================
-// 1. AUTO RELOAD ON INACTIVITY (30s)
-// ==========================================
-let inactivityTimeout;
+window.addEventListener('popstate', () => {
+    const currentPath = window.location.pathname;
+    const parts = currentPath.split('/');
+    const key = parts[parts.length - 1];
 
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        // User left the tab -> Start 30s timer
-        console.log('Tab hidden. Auto-reload timer started (30s).');
-        inactivityTimeout = setTimeout(() => {
-            console.log('30s verified. Reloading...');
-            window.location.reload();
-        }, 30000); // 30 seconds
-    } else {
-        // User returned -> Clear timer
-        if (inactivityTimeout) {
-            clearTimeout(inactivityTimeout);
-            console.log('Tab active. Timer cleared.');
-        }
-    }
-});
-
-// ==========================================
-// 2. LOADING SCREEN (LOTTIE)
-// ==========================================
-document.addEventListener("DOMContentLoaded", function () {
-    const loadingScreen = document.getElementById('loading-screen');
-    if (!loadingScreen) return;
-
-    // 1. FIX STALE CACHE: If lottieContainer missing (Old HTML), create it and wipe old PNG.
-    let lottieContainer = document.getElementById('lottie-welcome');
-    if (!lottieContainer) {
-        console.log('Detecting Stale HTML... Injecting Lottie Container.');
-        loadingScreen.innerHTML = ''; // Wipe old PNG
-        lottieContainer = document.createElement('div');
-        lottieContainer.id = 'lottie-welcome';
-        // Enforce CSS styles dynamically to be safe
-        lottieContainer.style.width = '300px';
-        lottieContainer.style.height = '300px';
-        lottieContainer.style.maxWidth = '80vw';
-        lottieContainer.style.maxHeight = '80vh';
-        loadingScreen.appendChild(lottieContainer);
-    }
-
-    // Retry checking for lottie lib for up to 3 seconds
-    let attempts = 0;
-    const checkLottie = setInterval(() => {
-        if (window.lottie) {
-            clearInterval(checkLottie);
-            startLottieAnimation(loadingScreen, lottieContainer);
-        } else {
-            attempts++;
-            if (attempts > 30) { // 3 seconds
-                clearInterval(checkLottie);
-                console.warn('Lottie lib not loaded. Fading out.');
-                fadeOutLoadingScreen(loadingScreen);
-            }
-        }
-    }, 100);
-});
-
-function startLottieAnimation(loadingScreen, lottieContainer) {
-    const anim = lottie.loadAnimation({
-        container: lottieContainer,
-        renderer: 'svg',
-        loop: false,
-        autoplay: true,
-        path: '/assets/json/welcome.json',
-        rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice' // Scale to fill/cover
-        }
-    });
-
-    // User requested full 8s duration.
-    // anim.setSpeed(1); // Default
-
-    // STRICT: Only fade out when animation actually finishes.
-    anim.addEventListener('complete', () => {
-        console.log('Animation Complete');
-        fadeOutLoadingScreen(loadingScreen);
-    });
-
-    // Error handling
-    anim.addEventListener('data_failed', () => {
-        console.error('Lottie Data Failed');
-        fadeOutLoadingScreen(loadingScreen);
-    });
-}
-
-function fadeOutLoadingScreen(element) {
-    if (!element) return;
-    element.style.opacity = '0';
-    setTimeout(() => {
-        element.style.display = 'none';
-        element.classList.add('hidden'); // Ensure class logic is consistent
-        // element.remove(); // REMOVED: Keep in DOM for re-use if needed
-    }, 500);
-}
-
-// Initial Call
-handleRouting(window.location.pathname);
-fetchDataFromAPI();
-fetchHomeSettings();
-window.addEventListener('popstate', (e) => handleRouting(window.location.pathname));
-
-// Listen for link clicks
-document.addEventListener('click', (e) => {
-    const link = e.target.closest('a');
-    if (link) {
-        handleNavLinkClick(e);
-    }
+    handleRouting(currentPath, key);
 });
 
 if (menuToggle) {
