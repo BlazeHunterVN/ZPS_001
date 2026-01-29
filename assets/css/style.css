@@ -936,8 +936,8 @@ body.hide-footer .footer {
 }
 
 #lottie-welcome {
-    width: 300px !important; 
-    height: 300px !important;
-    max-width: 80vw;
-    max-height: 80vh;
+    width: 400px !important;
+    height: 400px !important;
+    max-width: 90vw;
+    max-height: 90vh;
 }
