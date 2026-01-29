@@ -448,6 +448,14 @@ function updateSectionHeadings(path, key) {
 }
 
 function handleRouting(path, key) {
+    // Auto-derive key if not provided
+    if (!key) {
+        const parts = path.split('/').filter(p => p);
+        if (parts.length > 0) {
+            key = parts[parts.length - 1];
+        }
+    }
+
     const allNavLinks = document.querySelectorAll('.nav-links a');
     allNavLinks.forEach(link => {
         if (!link.closest('.language-selector')) {
