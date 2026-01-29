@@ -1086,9 +1086,22 @@ document.addEventListener('visibilitychange', () => {
 // ==========================================
 document.addEventListener("DOMContentLoaded", function () {
     const loadingScreen = document.getElementById('loading-screen');
-    const lottieContainer = document.getElementById('lottie-welcome');
+    if (!loadingScreen) return;
 
-    if (!loadingScreen || !lottieContainer) return;
+    // 1. FIX STALE CACHE: If lottieContainer missing (Old HTML), create it and wipe old PNG.
+    let lottieContainer = document.getElementById('lottie-welcome');
+    if (!lottieContainer) {
+        console.log('Detecting Stale HTML... Injecting Lottie Container.');
+        loadingScreen.innerHTML = ''; // Wipe old PNG
+        lottieContainer = document.createElement('div');
+        lottieContainer.id = 'lottie-welcome';
+        // Enforce CSS styles dynamically to be safe
+        lottieContainer.style.width = '300px';
+        lottieContainer.style.height = '300px';
+        lottieContainer.style.maxWidth = '80vw';
+        lottieContainer.style.maxHeight = '80vh';
+        loadingScreen.appendChild(lottieContainer);
+    }
 
     // Retry checking for lottie lib for up to 3 seconds
     let attempts = 0;
@@ -1098,7 +1111,7 @@ document.addEventListener("DOMContentLoaded", function () {
             startLottieAnimation(loadingScreen, lottieContainer);
         } else {
             attempts++;
-            if (attempts > 30) { // 3 seconds (100ms * 30)
+            if (attempts > 30) { // 3 seconds
                 clearInterval(checkLottie);
                 console.warn('Lottie lib not loaded. Fading out.');
                 fadeOutLoadingScreen(loadingScreen);
@@ -1118,6 +1131,9 @@ function startLottieAnimation(loadingScreen, lottieContainer) {
             preserveAspectRatio: 'xMidYMid slice' // Scale to fill/cover
         }
     });
+
+    // User requested full 8s duration.
+    // anim.setSpeed(1); // Default
 
     // STRICT: Only fade out when animation actually finishes.
     anim.addEventListener('complete', () => {

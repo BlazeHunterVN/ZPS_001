@@ -64,21 +64,56 @@
 
 <body>
     <div id="loading-screen">
-        <img src="/assets/image/LOGO_FF_SHORT.png" alt="Loading..." class="loading-logo">
+        <div id="lottie-welcome"></div>
     </div>
 
     <a href="#main-content" class="skip-to-content" style="position: absolute; left: -9999px; z-index: 999;"
         aria-label="Skip to main content">Skip to main content</a>
 
-    <header class="header" role="banner">
-        <div class="logo">
-            <a href="/" aria-label="Free Fire Posters Homepage">
-                <img src="/assets/image/LOGO_FF_SHORT.png" alt="Free Fire Logo" width="35" height="35">
-            </a>
-        </div>
+    <!-- ... body content ... -->
 
-        <div class="header-controls">
-            <li class="dropdown language-selector" id="mobileLangSelector" aria-label="Language selection">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/@imagekit/javascript/dist/imagekit.min.js" defer></script>
+    <script src="/assets/js/script.js?v=3.5.2" defer></script>
+
+    <div class="header-controls">
+        <li class="dropdown language-selector" id="mobileLangSelector" aria-label="Language selection">
+            <a href="#" class="nav-link lang-toggle" title="Select Region/Language" aria-label="Language menu toggle">
+                <img src="/assets/image/language.png" alt="Language icon" width="20" height="20">
+            </a>
+            <ul class="dropdown-menu language-menu" role="menu" aria-label="Language options">
+                <li><a href="#" data-lang="default">EN</a></li>
+                <li><a href="#" data-lang="vietnam">VI</a></li>
+            </ul>
+        </li>
+
+        <div class="menu-toggle" role="button" aria-label="Toggle navigation menu" aria-expanded="false" tabindex="0">
+            <i class="fa fa-bars"></i>
+        </div>
+    </div>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <ul class="nav-links">
+            <li><a href="/" class="nav-link" data-i18n="home_link">HOME</a></li>
+            <li class="dropdown">
+                <a href="/nation" class="nav-link" data-i18n="nation_link" aria-haspopup="true"
+                    aria-expanded="false">NATION</a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="/nation/brazil" id="brazil-link">BRAZIL</a></li>
+                    <li><a href="/nation/india" id="india-link">INDIA</a></li>
+                    <li><a href="/nation/indonesia" id="indonesia-link">INDONESIA</a></li>
+                    <li><a href="/nation/pakistan" id="pakistan-link">PAKISTAN</a></li>
+                    <li><a href="/nation/singapore" id="singapore-link">SINGAPORE</a></li>
+                    <li><a href="/nation/taiwan" id="taiwan-link">TAIWAN</a></li>
+                    <li><a href="/nation/thailand" id="thailand-link">THAILAND</a></li>
+                    <li><a href="/nation/vietnam" id="vietnam-link">VIETNAM</a></li>
+                </ul>
+            </li>
+            <li><a href="/news" class="nav-link" data-i18n="news_link">NEWS</a></li>
+            <li><a href="/contact" class="nav-link" data-i18n="contact_link">CONTACT</a></li>
+
+            <li class="dropdown language-selector desktop-only-selector" id="desktopLangSelector"
+                aria-label="Language selection">
                 <a href="#" class="nav-link lang-toggle" title="Select Region/Language"
                     aria-label="Language menu toggle">
                     <img src="/assets/image/language.png" alt="Language icon" width="20" height="20">
@@ -88,45 +123,8 @@
                     <li><a href="#" data-lang="vietnam">VI</a></li>
                 </ul>
             </li>
-
-            <div class="menu-toggle" role="button" aria-label="Toggle navigation menu" aria-expanded="false"
-                tabindex="0">
-                <i class="fa fa-bars"></i>
-            </div>
-        </div>
-        <nav class="navbar" role="navigation" aria-label="Main navigation">
-            <ul class="nav-links">
-                <li><a href="/" class="nav-link" data-i18n="home_link">HOME</a></li>
-                <li class="dropdown">
-                    <a href="/nation" class="nav-link" data-i18n="nation_link" aria-haspopup="true"
-                        aria-expanded="false">NATION</a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="/nation/brazil" id="brazil-link">BRAZIL</a></li>
-                        <li><a href="/nation/india" id="india-link">INDIA</a></li>
-                        <li><a href="/nation/indonesia" id="indonesia-link">INDONESIA</a></li>
-                        <li><a href="/nation/pakistan" id="pakistan-link">PAKISTAN</a></li>
-                        <li><a href="/nation/singapore" id="singapore-link">SINGAPORE</a></li>
-                        <li><a href="/nation/taiwan" id="taiwan-link">TAIWAN</a></li>
-                        <li><a href="/nation/thailand" id="thailand-link">THAILAND</a></li>
-                        <li><a href="/nation/vietnam" id="vietnam-link">VIETNAM</a></li>
-                    </ul>
-                </li>
-                <li><a href="/news" class="nav-link" data-i18n="news_link">NEWS</a></li>
-                <li><a href="/contact" class="nav-link" data-i18n="contact_link">CONTACT</a></li>
-
-                <li class="dropdown language-selector desktop-only-selector" id="desktopLangSelector"
-                    aria-label="Language selection">
-                    <a href="#" class="nav-link lang-toggle" title="Select Region/Language"
-                        aria-label="Language menu toggle">
-                        <img src="/assets/image/language.png" alt="Language icon" width="20" height="20">
-                    </a>
-                    <ul class="dropdown-menu language-menu" role="menu" aria-label="Language options">
-                        <li><a href="#" data-lang="default">EN</a></li>
-                        <li><a href="#" data-lang="vietnam">VI</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
+        </ul>
+    </nav>
     </header>
 
     <main class="main-content" id="main-content" role="main">
